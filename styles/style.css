@@ -56,20 +56,20 @@ body {
 /* calculator display */
 .calculator-display {
   width: 355px;
-  height: 100px;
+  height: 125px;
   margin-top: 10px;
   padding: 10px;
   border-radius: 10px;
   background-color: var(--background);
   justify-content: flex-end;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 /* calculator buttons */
 .calculator-buttons {
   margin-top: 20px;
   min-width: 355px;
-  height: 500px;
+  height: 475px;
   border-radius: 13px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
