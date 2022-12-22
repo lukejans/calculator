@@ -19,6 +19,7 @@ const multiplyBtn = document.getElementById('multiply');
 const divideBtn = document.getElementById('divide');
 // screen
 const screenOutput = document.getElementById('dis-in-out');
+const previewLast = document.getElementById('preview');
 
 // INITIALIZE BUTTON INPUTS //
 let equals = '';
@@ -93,6 +94,7 @@ let textOnType = ``;
 clearBtn.addEventListener('click', function () {
   screenOutput.textContent = '0';
   resetEC();
+  previewLast.textContent = '';
 });
 
 // NUMBERS //
@@ -191,6 +193,7 @@ equalsBtn.addEventListener('click', function () {
   operate(numbers, operators);
   console.log(equals);
   screenOutput.textContent = equals;
+  previewLast.textContent = `${currentMaths} ${currentNum} =`;
   resetEC();
 });
 
