@@ -1,5 +1,6 @@
 //  EVENT LISTENERS //
 const equalsBtn = document.getElementById('equals');
+const clearBtn = document.getElementById('clear');
 // numbers
 const zeroBtn = document.getElementById('zero');
 const oneBtn = document.getElementById('one');
@@ -76,7 +77,7 @@ function operate(numbers, operators) {
     }
   }
   // EQUALS //
-  equals = numbers[0].toFixed(2);
+  equals = numbers[0];
   return numbers[0];
 }
 // USER INPUT VARIABLES //
@@ -86,9 +87,13 @@ let operators = []; // string
 
 // CHECK WHATS TYPED FOR DISPLAY //
 let numType = false;
+let textOnType = ``;
 
 // CLEAR //
-function clear() {}
+clearBtn.addEventListener('click', function () {
+  screenOutput.textContent = '0';
+  resetEC();
+});
 
 // NUMBERS //
 zeroBtn.addEventListener('click', function () {
@@ -186,20 +191,27 @@ equalsBtn.addEventListener('click', function () {
   operate(numbers, operators);
   console.log(equals);
   screenOutput.textContent = equals;
-  equals = '';
-  currentNum = '';
-  currentOp = '';
-  currentMaths = '';
-  numbers = [];
-  operators = [];
+  resetEC();
 });
 
 // DISPLAY CURRENT INPUT //
 function showMaths() {
   if (numType) {
-    screenOutput.textContent = `${currentNum}`;
+    screenOutput.textContent = `${textOnType}${currentNum}`;
   } else if (!numType) {
+    textOnType = `${currentMaths} ${currentNum} ${currentOp} `;
     currentMaths += `${currentNum} ${currentOp} `;
     screenOutput.textContent = `${currentMaths}`;
   }
+}
+
+//  reset helper function
+function resetEC() {
+  equals = '';
+  currentNum = '';
+  currentOp = '';
+  currentMaths = ``;
+  textOnType = ``;
+  numbers = [];
+  operators = [];
 }
