@@ -37,6 +37,8 @@ body {
 /* wrapper */
 .wrapper {
   justify-content: center;
+  flex-direction: column;
+  gap: 20px;
   height: 100vh;
 }
 /*  calculator layout  */
@@ -124,4 +126,15 @@ button {
   color: var(--op-hov);
   font-size: 0.95rem;
   margin-bottom: 10px;
+}
+a {
+  text-decoration: none;
+  color: var(--equals);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+a:hover {
+  color: var(--clear);
 }
