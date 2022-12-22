@@ -1,6 +1,10 @@
+// If you're reading this I apologize for the horribly managed code
+// I will use this as an opportunity to help learn refactoring
+// to maintain and improve this code
 //  EVENT LISTENERS //
 const equalsBtn = document.getElementById('equals');
 const clearBtn = document.getElementById('clear');
+const deleteBtn = document.getElementById('delete');
 // numbers
 const zeroBtn = document.getElementById('zero');
 const oneBtn = document.getElementById('one');
@@ -88,6 +92,7 @@ let operators = []; // string
 
 // CHECK WHATS TYPED FOR DISPLAY //
 let numType = false;
+let delType = false;
 let textOnType = ``;
 
 // CLEAR //
@@ -95,6 +100,23 @@ clearBtn.addEventListener('click', function () {
   screenOutput.textContent = '0';
   resetEC();
   previewLast.textContent = '';
+});
+
+// DELETE //
+deleteBtn.addEventListener('click', function () {
+  if (numType) {
+    currentNum = currentNum.slice(0, -1);
+    screenOutput.textContent = `${textOnType}${currentNum}`;
+  } else if (!numType) {
+    if (!delType) {
+      operators.pop();
+      textOnType = textOnType.slice(0, -2) + '';
+      currentMaths = currentMaths.slice(0, -2) + '';
+      screenOutput.textContent = `${textOnType} `;
+      currentOp = '';
+      delType = true;
+    }
+  }
 });
 
 // NUMBERS //
@@ -151,37 +173,49 @@ nineBtn.addEventListener('click', function () {
 
 // OPERATORS //
 addBtn.addEventListener('click', function () {
+  if (!delType) {
+    numbers.push(Number(currentNum));
+  }
   currentOp = '+';
-  numbers.push(Number(currentNum));
   operators.push(currentOp);
   numType = false;
+  delType = false;
   showMaths();
   currentOp = '';
   currentNum = '';
 });
 subtractBtn.addEventListener('click', function () {
+  if (!delType) {
+    numbers.push(Number(currentNum));
+  }
   currentOp = '-';
-  numbers.push(Number(currentNum));
   operators.push(currentOp);
   numType = false;
+  delType = false;
   showMaths();
   currentOp = '';
   currentNum = '';
 });
 multiplyBtn.addEventListener('click', function () {
+  if (!delType) {
+    numbers.push(Number(currentNum));
+  }
   currentOp = '*';
-  numbers.push(Number(currentNum));
   operators.push(currentOp);
   numType = false;
+  delType = false;
   showMaths();
   currentOp = '';
   currentNum = '';
 });
 divideBtn.addEventListener('click', function () {
+  if (!delType) {
+    numbers.push(Number(currentNum));
+  }
   currentOp = '/';
-  numbers.push(Number(currentNum));
   operators.push(currentOp);
   numType = false;
+  delType = false;
   showMaths();
   currentOp = '';
   currentNum = '';
