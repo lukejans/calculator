@@ -112,3 +112,7 @@ button {
   font-size: 1.25rem;
   cursor: pointer;
 }
+.dis-text {
+  word-wrap: break-word;
+  word-break: break-all;
+}
