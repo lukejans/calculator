@@ -52,6 +52,8 @@ function divide(a, b) {
 }
 
 // OPERATE //
+// follows 'BEDMAS' and isn't called until the user
+// clicks the equals button.
 function operate(numbers, operators) {
   // multiplication and division
   for (let i = 0; i < operators.length; i++) {
@@ -81,18 +83,25 @@ function operate(numbers, operators) {
       i--;
     }
   }
-  // EQUALS //
+  // equals
   equals = numbers[0];
   return numbers[0];
 }
+
 // USER INPUT VARIABLES //
+// these variables store the user inputs to be used in
+// the operate function as arguments
 let numbers = []; // integer
 let operators = []; // string
-// console.log(operate(numbers, operators));
 
-// CHECK WHATS TYPED FOR DISPLAY //
+// CHECK INPUT TYPE //
+// these values are used to check if the user is using
+// a specific button on the calculator ex.('del' btn...)
 let numType = false;
 let delType = false;
+// value to display for screen output depending on
+//  // ...INPUT TYPE // to make sure numbers are displayed
+// properly throughout the equation input by user
 let textOnType = ``;
 // reset boolean values
 function resetBV() {
