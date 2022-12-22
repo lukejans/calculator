@@ -253,7 +253,7 @@ function showMaths() {
 }
 
 //  HELPER FUNCTIONS //
-// reset on clear or equals
+// reset on equals or clear
 function resetEC() {
   equals = '';
   currentNum = '';
