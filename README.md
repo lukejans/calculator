@@ -10,3 +10,7 @@
   - [x] box above displaying last equation
   - [ ] max of 20 char in box above result
 - [ ] UI color improvements
+- [ ] add restrictions on buttons
+  - [ ] cant click multiple operators at once
+  - [ ] can't delete display answer
+- [ ] allow user to use their previous answer to perform a new equation
