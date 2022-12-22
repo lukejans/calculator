@@ -94,6 +94,11 @@ let operators = []; // string
 let numType = false;
 let delType = false;
 let textOnType = ``;
+// reset boolean values
+function resetBV() {
+  numType = false;
+  delType = false;
+}
 
 // CLEAR //
 clearBtn.addEventListener('click', function () {
@@ -178,8 +183,7 @@ addBtn.addEventListener('click', function () {
   }
   currentOp = '+';
   operators.push(currentOp);
-  numType = false;
-  delType = false;
+  resetBV();
   showMaths();
   currentOp = '';
   currentNum = '';
@@ -190,8 +194,7 @@ subtractBtn.addEventListener('click', function () {
   }
   currentOp = '-';
   operators.push(currentOp);
-  numType = false;
-  delType = false;
+  resetBV();
   showMaths();
   currentOp = '';
   currentNum = '';
@@ -202,8 +205,7 @@ multiplyBtn.addEventListener('click', function () {
   }
   currentOp = '*';
   operators.push(currentOp);
-  numType = false;
-  delType = false;
+  resetBV();
   showMaths();
   currentOp = '';
   currentNum = '';
@@ -214,8 +216,7 @@ divideBtn.addEventListener('click', function () {
   }
   currentOp = '/';
   operators.push(currentOp);
-  numType = false;
-  delType = false;
+  resetBV();
   showMaths();
   currentOp = '';
   currentNum = '';
@@ -242,7 +243,8 @@ function showMaths() {
   }
 }
 
-//  reset helper function
+//  HELPER FUNCTIONS //
+// reset on clear or equals
 function resetEC() {
   equals = '';
   currentNum = '';
