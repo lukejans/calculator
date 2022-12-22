@@ -26,6 +26,7 @@
     <div class="wrapper">
       <main class="calculator">
         <section class="calculator-display">
+          <p class="preview" id="preview"></p>
           <p class="dis-text" id="dis-in-out">0</p>
         </section>
         <section class="calculator-buttons">
@@ -34,7 +35,14 @@
             id="clear"
             type="reset"
             aria-label="clear calculator">
-            c
+            clear
+          </button>
+          <button
+            class="delete-btn"
+            id="delete"
+            type="button"
+            aria-label="delete character">
+            del
           </button>
           <button
             class="op-btn"
