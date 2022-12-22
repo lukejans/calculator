@@ -80,84 +80,126 @@ function operate(numbers, operators) {
   return numbers[0];
 }
 // USER INPUT VARIABLES //
-const numbers = []; // integer
-const operators = []; // string
+let numbers = []; // integer
+let operators = []; // string
 // console.log(operate(numbers, operators));
+
+// CHECK WHATS TYPED FOR DISPLAY //
+let numType = false;
 
 // CLEAR //
 function clear() {}
 
 // NUMBERS //
-// screen output from array if length is 1 or greater
 zeroBtn.addEventListener('click', function () {
-  currentNum = currentNum + '0';
+  currentNum += '0';
+  numType = true;
+  showMaths();
 });
 oneBtn.addEventListener('click', function () {
-  currentNum = currentNum + '1';
+  currentNum += '1';
+  numType = true;
+  showMaths();
 });
 twoBtn.addEventListener('click', function () {
-  currentNum = currentNum + '2';
+  currentNum += '2';
+  numType = true;
+  showMaths();
 });
 threeBtn.addEventListener('click', function () {
-  currentNum = currentNum + '3';
+  currentNum += '3';
+  numType = true;
+  showMaths();
 });
 fourBtn.addEventListener('click', function () {
-  currentNum = currentNum + '4';
+  currentNum += '4';
+  numType = true;
+  showMaths();
 });
 fiveBtn.addEventListener('click', function () {
-  currentNum = currentNum + '5';
+  currentNum += '5';
+  numType = true;
+  showMaths();
 });
 sixBtn.addEventListener('click', function () {
-  currentNum = currentNum + '6';
+  currentNum += '6';
+  numType = true;
+  showMaths();
 });
 sevenBtn.addEventListener('click', function () {
-  currentNum = currentNum + '7';
+  currentNum += '7';
+  numType = true;
+  showMaths();
 });
 eightBtn.addEventListener('click', function () {
-  currentNum = currentNum + '8';
+  currentNum += '8';
+  numType = true;
+  showMaths();
 });
 nineBtn.addEventListener('click', function () {
-  currentNum = currentNum + '9';
+  currentNum += '9';
+  numType = true;
+  showMaths();
 });
 
-// DIGITS //
+// OPERATORS //
 addBtn.addEventListener('click', function () {
   currentOp = '+';
   numbers.push(Number(currentNum));
   operators.push(currentOp);
+  numType = false;
+  showMaths();
   currentOp = '';
   currentNum = '';
 });
 subtractBtn.addEventListener('click', function () {
-  currentOp = '+';
+  currentOp = '-';
   numbers.push(Number(currentNum));
   operators.push(currentOp);
+  numType = false;
+  showMaths();
   currentOp = '';
   currentNum = '';
 });
 multiplyBtn.addEventListener('click', function () {
-  currentOp = '+';
+  currentOp = '*';
   numbers.push(Number(currentNum));
   operators.push(currentOp);
+  numType = false;
+  showMaths();
   currentOp = '';
   currentNum = '';
 });
 divideBtn.addEventListener('click', function () {
-  currentOp = '+';
+  currentOp = '/';
   numbers.push(Number(currentNum));
   operators.push(currentOp);
+  numType = false;
+  showMaths();
   currentOp = '';
   currentNum = '';
 });
 
 // EQUALS //
 equalsBtn.addEventListener('click', function () {
+  numbers.push(Number(currentNum));
+  operate(numbers, operators);
   console.log(equals);
   screenOutput.textContent = equals;
-  sumHistory = equals;
-  numbers.push(Number(currentNum));
   equals = '';
   currentNum = '';
+  currentOp = '';
+  currentMaths = '';
+  numbers = [];
+  operators = [];
 });
 
 // DISPLAY CURRENT INPUT //
+function showMaths() {
+  if (numType) {
+    screenOutput.textContent = `${currentNum}`;
+  } else if (!numType) {
+    currentMaths += `${currentNum} ${currentOp} `;
+    screenOutput.textContent = `${currentMaths}`;
+  }
+}
