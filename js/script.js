@@ -113,6 +113,7 @@ function resetBV() {
 clearBtn.addEventListener('click', function () {
   screenOutput.textContent = '0';
   resetEC();
+  // reset most recent equation
   previewLast.textContent = '';
 });
 
@@ -237,9 +238,20 @@ equalsBtn.addEventListener('click', function () {
   operate(numbers, operators);
   console.log(equals);
   screenOutput.textContent = equals;
-  previewLast.textContent = `${currentMaths} ${currentNum} =`;
+  // set previous equation preview
+  let originalString = `${currentMaths} ${currentNum} =`;
+  let truncatedString = truncateText(originalString, 36);
+  previewLast.textContent = truncatedString;
   resetEC();
 });
+
+// ELLIPSE TEXT //
+function truncateText(text, maxLength) {
+  if (text.length > maxLength) {
+    return text.substring(0, maxLength - 3) + '...';
+  }
+  return text;
+}
 
 // DISPLAY CURRENT INPUT //
 function showMaths() {
