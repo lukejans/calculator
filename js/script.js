@@ -14,8 +14,10 @@ const nineBtn = document.getElementById('nine');
 
 const screenOutput = document.getElementById('dis-in-out');
 
-// EQUALS
+// INITIALIZE BUTTON INPUTS //
 let equals = '';
+let currentNum = '';
+let currentOp = '';
 
 // ADD //
 function add(a, b) {
@@ -89,34 +91,44 @@ equalsBtn.addEventListener('click', function () {
 
 // DIGITS //
 zeroBtn.addEventListener('click', function () {
-  console.log('0');
+  currentNum = currentNum + '0';
+  screenOutput.textContent = currentNum;
 });
 oneBtn.addEventListener('click', function () {
-  console.log('1');
+  currentNum = currentNum + '1';
+  screenOutput.textContent = currentNum;
 });
 twoBtn.addEventListener('click', function () {
-  console.log('2');
+  currentNum = currentNum + '2';
+  screenOutput.textContent = currentNum;
 });
 threeBtn.addEventListener('click', function () {
-  console.log('3');
+  currentNum = currentNum + '3';
+  screenOutput.textContent = currentNum;
 });
 fourBtn.addEventListener('click', function () {
-  console.log('4');
+  currentNum = currentNum + '4';
+  screenOutput.textContent = currentNum;
 });
 fiveBtn.addEventListener('click', function () {
-  console.log('5');
+  currentNum = currentNum + '5';
+  screenOutput.textContent = currentNum;
 });
 sixBtn.addEventListener('click', function () {
-  console.log('6');
+  currentNum = currentNum + '6';
+  screenOutput.textContent = currentNum;
 });
 sevenBtn.addEventListener('click', function () {
-  console.log('7');
+  currentNum = currentNum + '7';
+  screenOutput.textContent = currentNum;
 });
 eightBtn.addEventListener('click', function () {
-  console.log('8');
+  currentNum = currentNum + '8';
+  screenOutput.textContent = currentNum;
 });
 nineBtn.addEventListener('click', function () {
-  console.log('9');
+  currentNum = currentNum + '9';
+  screenOutput.textContent = currentNum;
 });
 
 // DISPLAY CURRENT INPUT //
