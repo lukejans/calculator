@@ -1,6 +1,6 @@
 //  EVENT LISTENERS //
 const equalsBtn = document.getElementById('equals');
-
+// numbers
 const zeroBtn = document.getElementById('zero');
 const oneBtn = document.getElementById('one');
 const twoBtn = document.getElementById('two');
@@ -11,13 +11,19 @@ const sixBtn = document.getElementById('six');
 const sevenBtn = document.getElementById('seven');
 const eightBtn = document.getElementById('eight');
 const nineBtn = document.getElementById('nine');
-
+// operators
+const addBtn = document.getElementById('add');
+const subtractBtn = document.getElementById('subtract');
+const multiplyBtn = document.getElementById('multiply');
+const divideBtn = document.getElementById('divide');
+// screen
 const screenOutput = document.getElementById('dis-in-out');
 
 // INITIALIZE BUTTON INPUTS //
 let equals = '';
 let currentNum = '';
 let currentOp = '';
+let currentMaths = '';
 
 // ADD //
 function add(a, b) {
@@ -73,62 +79,85 @@ function operate(numbers, operators) {
   equals = numbers[0].toFixed(2);
   return numbers[0];
 }
-// Example usage:
-const numbers = [1, 2, 3, 4, 5];
-const operators = ['+', '-', '*', '/'];
-console.log(operate(numbers, operators));
+// USER INPUT VARIABLES //
+const numbers = []; // integer
+const operators = []; // string
+// console.log(operate(numbers, operators));
 
 // CLEAR //
 function clear() {}
 
-// PRINT EQUALS //
+// NUMBERS //
+// screen output from array if length is 1 or greater
+zeroBtn.addEventListener('click', function () {
+  currentNum = currentNum + '0';
+});
+oneBtn.addEventListener('click', function () {
+  currentNum = currentNum + '1';
+});
+twoBtn.addEventListener('click', function () {
+  currentNum = currentNum + '2';
+});
+threeBtn.addEventListener('click', function () {
+  currentNum = currentNum + '3';
+});
+fourBtn.addEventListener('click', function () {
+  currentNum = currentNum + '4';
+});
+fiveBtn.addEventListener('click', function () {
+  currentNum = currentNum + '5';
+});
+sixBtn.addEventListener('click', function () {
+  currentNum = currentNum + '6';
+});
+sevenBtn.addEventListener('click', function () {
+  currentNum = currentNum + '7';
+});
+eightBtn.addEventListener('click', function () {
+  currentNum = currentNum + '8';
+});
+nineBtn.addEventListener('click', function () {
+  currentNum = currentNum + '9';
+});
+
+// DIGITS //
+addBtn.addEventListener('click', function () {
+  currentOp = '+';
+  numbers.push(Number(currentNum));
+  operators.push(currentOp);
+  currentOp = '';
+  currentNum = '';
+});
+subtractBtn.addEventListener('click', function () {
+  currentOp = '+';
+  numbers.push(Number(currentNum));
+  operators.push(currentOp);
+  currentOp = '';
+  currentNum = '';
+});
+multiplyBtn.addEventListener('click', function () {
+  currentOp = '+';
+  numbers.push(Number(currentNum));
+  operators.push(currentOp);
+  currentOp = '';
+  currentNum = '';
+});
+divideBtn.addEventListener('click', function () {
+  currentOp = '+';
+  numbers.push(Number(currentNum));
+  operators.push(currentOp);
+  currentOp = '';
+  currentNum = '';
+});
+
+// EQUALS //
 equalsBtn.addEventListener('click', function () {
   console.log(equals);
   screenOutput.textContent = equals;
   sumHistory = equals;
+  numbers.push(Number(currentNum));
   equals = '';
-});
-
-// DIGITS //
-zeroBtn.addEventListener('click', function () {
-  currentNum = currentNum + '0';
-  screenOutput.textContent = currentNum;
-});
-oneBtn.addEventListener('click', function () {
-  currentNum = currentNum + '1';
-  screenOutput.textContent = currentNum;
-});
-twoBtn.addEventListener('click', function () {
-  currentNum = currentNum + '2';
-  screenOutput.textContent = currentNum;
-});
-threeBtn.addEventListener('click', function () {
-  currentNum = currentNum + '3';
-  screenOutput.textContent = currentNum;
-});
-fourBtn.addEventListener('click', function () {
-  currentNum = currentNum + '4';
-  screenOutput.textContent = currentNum;
-});
-fiveBtn.addEventListener('click', function () {
-  currentNum = currentNum + '5';
-  screenOutput.textContent = currentNum;
-});
-sixBtn.addEventListener('click', function () {
-  currentNum = currentNum + '6';
-  screenOutput.textContent = currentNum;
-});
-sevenBtn.addEventListener('click', function () {
-  currentNum = currentNum + '7';
-  screenOutput.textContent = currentNum;
-});
-eightBtn.addEventListener('click', function () {
-  currentNum = currentNum + '8';
-  screenOutput.textContent = currentNum;
-});
-nineBtn.addEventListener('click', function () {
-  currentNum = currentNum + '9';
-  screenOutput.textContent = currentNum;
+  currentNum = '';
 });
 
 // DISPLAY CURRENT INPUT //
