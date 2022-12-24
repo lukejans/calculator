@@ -74,7 +74,6 @@ function operate(numbers, operators) {
     }
   }
   // equals
-  equals = numbers[0];
   return numbers[0];
 }
 
@@ -185,8 +184,9 @@ operatorButtons.forEach((button) => {
 equalsBtn.addEventListener('click', function () {
   //  convert string numbers to integers
   numbers.push(Number(currentNum));
-  operate(numbers, operators);
-
+  // store result in equals
+  let equals = operate(numbers, operators);
+  // check for decimal
   if (Number.isInteger(equals)) {
     // result is an integer, so display it as is
     console.log(equals);
@@ -214,9 +214,12 @@ function truncateText(text, maxLength) {
 
 // DISPLAY CURRENT INPUT //
 function showMaths() {
+  // display this if user is input is a number
   if (numType) {
     screenOutput.textContent = `${textOnType}${currentNum}`;
-  } else if (!numType) {
+  }
+  // display this if the user isn't typing a number
+  else if (!numType) {
     textOnType = `${currentMaths} ${currentNum} ${currentOp} `;
     currentMaths += `${currentNum} ${currentOp} `;
     screenOutput.textContent = `${currentMaths}`;
