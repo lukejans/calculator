@@ -186,8 +186,16 @@ equalsBtn.addEventListener('click', function () {
   //  convert string numbers to integers
   numbers.push(Number(currentNum));
   operate(numbers, operators);
-  console.log(equals);
-  screenOutput.textContent = equals;
+
+  if (Number.isInteger(equals)) {
+    // result is an integer, so display it as is
+    console.log(equals);
+    screenOutput.textContent = equals;
+  } else {
+    // result is not an integer, so use toFixed to display it with 2 decimal places
+    console.log(equals.toFixed(2));
+    screenOutput.textContent = equals.toFixed(2);
+  }
   // set previous equation preview
   let originalString = `${currentMaths} ${currentNum} =`;
   // ellipse text when length exceeds 36 char
