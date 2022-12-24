@@ -1,7 +1,6 @@
 // If you're reading this I apologize for the horribly managed code
 // I will use this as an opportunity to help learn refactoring
 // to maintain and improve this code
-// TODO: build decimal functionality
 // TODO: allow users to perform operations based on previous answer
 // TODO: only allow proper syntax like not allowing multiple operators and del btn rework
 // TODO: history section
@@ -85,13 +84,17 @@ let operators = []; // string
 
 // CHECK INPUT TYPE //
 // these values are used to check if the user is using
-// a specific button on the calculator ex.('del' btn...)
+// a specific button on the calculator to ensure proper
+// syntax is being used.
 let numType = false;
 let delType = false;
+let decType = false;
+let eqlType = false;
 // reset boolean values
 function resetBV() {
   numType = false;
   delType = false;
+  decType = false;
 }
 // value to display for screen output depending on
 // ...INPUT TYPE // to make sure numbers are displayed
@@ -99,18 +102,28 @@ function resetBV() {
 let textOnType = ``;
 
 // CLEAR //
-clearBtn.addEventListener('click', function () {
+// clear screen function
+function clearScreen() {
   screenOutput.textContent = '0';
   resetEC();
+  resetBV();
   // reset most recent equation
   previewLast.textContent = '';
+}
+// call clearScreen() function on button click
+clearBtn.addEventListener('click', function () {
+  clearScreen();
 });
 
 // DELETE //
 deleteBtn.addEventListener('click', function () {
-  if (numType) {
+  if (eqlType) {
+    clearScreen();
+    eqlType = false;
+  } else if (numType) {
     currentNum = currentNum.slice(0, -1);
     screenOutput.textContent = `${textOnType}${currentNum}`;
+    decType = false;
   } else if (!numType) {
     if (!delType) {
       operators.pop();
@@ -135,6 +148,17 @@ const sixBtn = document.getElementById('six');
 const sevenBtn = document.getElementById('seven');
 const eightBtn = document.getElementById('eight');
 const nineBtn = document.getElementById('nine');
+// decimal button will be treated as a number
+const decimalBtn = document.getElementById('decimal');
+decimalBtn.addEventListener('click', function () {
+  if (!decType) {
+    currentNum += '.';
+    decType = true;
+  }
+  numType = true;
+  showMaths();
+});
+// store buttons in numbers array to loop through buttons
 const numberButtons = [
   zeroBtn,
   oneBtn,
@@ -201,7 +225,9 @@ equalsBtn.addEventListener('click', function () {
   // ellipse text when length exceeds 36 char
   let truncatedString = truncateText(originalString, 36);
   previewLast.textContent = truncatedString;
+  eqlType = true;
   resetEC();
+  resetBV();
 });
 
 // ELLIPSE TEXT //
