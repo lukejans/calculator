@@ -6,21 +6,11 @@
 // TODO: only allow proper syntax like not allowing multiple operators and del btn rework
 // TODO: history section
 // ! users should not be able to return an incorrect result
-//  EVENT LISTENERS //
+//  alt buttons
 const equalsBtn = document.getElementById('equals');
 const clearBtn = document.getElementById('clear');
 const deleteBtn = document.getElementById('delete');
-// numbers
-const zeroBtn = document.getElementById('zero');
-const oneBtn = document.getElementById('one');
-const twoBtn = document.getElementById('two');
-const threeBtn = document.getElementById('three');
-const fourBtn = document.getElementById('four');
-const fiveBtn = document.getElementById('five');
-const sixBtn = document.getElementById('six');
-const sevenBtn = document.getElementById('seven');
-const eightBtn = document.getElementById('eight');
-const nineBtn = document.getElementById('nine');
+
 // screen
 const screenOutput = document.getElementById('dis-in-out');
 const previewLast = document.getElementById('preview');
@@ -99,15 +89,15 @@ let operators = []; // string
 // a specific button on the calculator ex.('del' btn...)
 let numType = false;
 let delType = false;
-// value to display for screen output depending on
-// ...INPUT TYPE // to make sure numbers are displayed
-// properly throughout the equation input by user
-let textOnType = ``;
 // reset boolean values
 function resetBV() {
   numType = false;
   delType = false;
 }
+// value to display for screen output depending on
+// ...INPUT TYPE // to make sure numbers are displayed
+// properly throughout the equation input by user
+let textOnType = ``;
 
 // CLEAR //
 clearBtn.addEventListener('click', function () {
@@ -135,57 +125,17 @@ deleteBtn.addEventListener('click', function () {
 });
 
 // NUMBERS //
-zeroBtn.addEventListener('click', function () {
-  currentNum += '0';
-  numType = true;
-  showMaths();
-});
-oneBtn.addEventListener('click', function () {
-  currentNum += '1';
-  numType = true;
-  showMaths();
-});
-twoBtn.addEventListener('click', function () {
-  currentNum += '2';
-  numType = true;
-  showMaths();
-});
-threeBtn.addEventListener('click', function () {
-  currentNum += '3';
-  numType = true;
-  showMaths();
-});
-fourBtn.addEventListener('click', function () {
-  currentNum += '4';
-  numType = true;
-  showMaths();
-});
-fiveBtn.addEventListener('click', function () {
-  currentNum += '5';
-  numType = true;
-  showMaths();
-});
-sixBtn.addEventListener('click', function () {
-  currentNum += '6';
-  numType = true;
-  showMaths();
-});
-sevenBtn.addEventListener('click', function () {
-  currentNum += '7';
-  numType = true;
-  showMaths();
-});
-eightBtn.addEventListener('click', function () {
-  currentNum += '8';
-  numType = true;
-  showMaths();
-});
-nineBtn.addEventListener('click', function () {
-  currentNum += '9';
-  numType = true;
-  showMaths();
-});
-
+// get num buttons to add event listeners
+const zeroBtn = document.getElementById('zero');
+const oneBtn = document.getElementById('one');
+const twoBtn = document.getElementById('two');
+const threeBtn = document.getElementById('three');
+const fourBtn = document.getElementById('four');
+const fiveBtn = document.getElementById('five');
+const sixBtn = document.getElementById('six');
+const sevenBtn = document.getElementById('seven');
+const eightBtn = document.getElementById('eight');
+const nineBtn = document.getElementById('nine');
 const numberButtons = [
   zeroBtn,
   oneBtn,
@@ -198,7 +148,7 @@ const numberButtons = [
   eightBtn,
   nineBtn,
 ];
-
+// num btn event listeners
 numberButtons.forEach((button) => {
   button.addEventListener('click', function () {
     currentNum += button.value;
@@ -208,14 +158,14 @@ numberButtons.forEach((button) => {
 });
 
 // OPERATORS //
-// get buttons to add event listeners
+// get op buttons to add event listeners
 const addBtn = document.getElementById('add');
 const subtractBtn = document.getElementById('subtract');
 const multiplyBtn = document.getElementById('multiply');
 const divideBtn = document.getElementById('divide');
 // store buttons in operators array to loop through buttons
 const operatorButtons = [addBtn, subtractBtn, multiplyBtn, divideBtn];
-
+// op btn event listeners
 operatorButtons.forEach((button) => {
   button.addEventListener('click', function () {
     if (!delType) {
