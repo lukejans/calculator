@@ -1,6 +1,11 @@
 // If you're reading this I apologize for the horribly managed code
 // I will use this as an opportunity to help learn refactoring
 // to maintain and improve this code
+// TODO: build decimal functionality
+// TODO: allow users to perform operations based on previous answer
+// TODO: only allow proper syntax like not allowing multiple operators and del btn rework
+// TODO: history section
+// ! users should not be able to return an incorrect result
 //  EVENT LISTENERS //
 const equalsBtn = document.getElementById('equals');
 const clearBtn = document.getElementById('clear');
@@ -100,7 +105,7 @@ let operators = []; // string
 let numType = false;
 let delType = false;
 // value to display for screen output depending on
-//  // ...INPUT TYPE // to make sure numbers are displayed
+// ...INPUT TYPE // to make sure numbers are displayed
 // properly throughout the equation input by user
 let textOnType = ``;
 // reset boolean values
@@ -187,49 +192,20 @@ nineBtn.addEventListener('click', function () {
 });
 
 // OPERATORS //
-addBtn.addEventListener('click', function () {
-  if (!delType) {
-    numbers.push(Number(currentNum));
-  }
-  currentOp = '+';
-  operators.push(currentOp);
-  resetBV();
-  showMaths();
-  currentOp = '';
-  currentNum = '';
-});
-subtractBtn.addEventListener('click', function () {
-  if (!delType) {
-    numbers.push(Number(currentNum));
-  }
-  currentOp = '-';
-  operators.push(currentOp);
-  resetBV();
-  showMaths();
-  currentOp = '';
-  currentNum = '';
-});
-multiplyBtn.addEventListener('click', function () {
-  if (!delType) {
-    numbers.push(Number(currentNum));
-  }
-  currentOp = '*';
-  operators.push(currentOp);
-  resetBV();
-  showMaths();
-  currentOp = '';
-  currentNum = '';
-});
-divideBtn.addEventListener('click', function () {
-  if (!delType) {
-    numbers.push(Number(currentNum));
-  }
-  currentOp = '/';
-  operators.push(currentOp);
-  resetBV();
-  showMaths();
-  currentOp = '';
-  currentNum = '';
+const operatorButtons = [addBtn, subtractBtn, multiplyBtn, divideBtn];
+
+operatorButtons.forEach((button) => {
+  button.addEventListener('click', function () {
+    if (!delType) {
+      numbers.push(Number(currentNum));
+    }
+    currentOp = button.value;
+    operators.push(currentOp);
+    resetBV();
+    showMaths();
+    currentOp = '';
+    currentNum = '';
+  });
 });
 
 // EQUALS //
@@ -240,6 +216,7 @@ equalsBtn.addEventListener('click', function () {
   screenOutput.textContent = equals;
   // set previous equation preview
   let originalString = `${currentMaths} ${currentNum} =`;
+  // ellipse text when length exceeds 36 char
   let truncatedString = truncateText(originalString, 36);
   previewLast.textContent = truncatedString;
   resetEC();
