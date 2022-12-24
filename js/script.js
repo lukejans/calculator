@@ -21,11 +21,6 @@ const sixBtn = document.getElementById('six');
 const sevenBtn = document.getElementById('seven');
 const eightBtn = document.getElementById('eight');
 const nineBtn = document.getElementById('nine');
-// operators
-const addBtn = document.getElementById('add');
-const subtractBtn = document.getElementById('subtract');
-const multiplyBtn = document.getElementById('multiply');
-const divideBtn = document.getElementById('divide');
 // screen
 const screenOutput = document.getElementById('dis-in-out');
 const previewLast = document.getElementById('preview');
@@ -191,12 +186,40 @@ nineBtn.addEventListener('click', function () {
   showMaths();
 });
 
+const numberButtons = [
+  zeroBtn,
+  oneBtn,
+  twoBtn,
+  threeBtn,
+  fourBtn,
+  fiveBtn,
+  sixBtn,
+  sevenBtn,
+  eightBtn,
+  nineBtn,
+];
+
+numberButtons.forEach((button) => {
+  button.addEventListener('click', function () {
+    currentNum += button.value;
+    numType = true;
+    showMaths();
+  });
+});
+
 // OPERATORS //
+// get buttons to add event listeners
+const addBtn = document.getElementById('add');
+const subtractBtn = document.getElementById('subtract');
+const multiplyBtn = document.getElementById('multiply');
+const divideBtn = document.getElementById('divide');
+// store buttons in operators array to loop through buttons
 const operatorButtons = [addBtn, subtractBtn, multiplyBtn, divideBtn];
 
 operatorButtons.forEach((button) => {
   button.addEventListener('click', function () {
     if (!delType) {
+      //  convert string numbers to integers
       numbers.push(Number(currentNum));
     }
     currentOp = button.value;
@@ -210,6 +233,7 @@ operatorButtons.forEach((button) => {
 
 // EQUALS //
 equalsBtn.addEventListener('click', function () {
+  //  convert string numbers to integers
   numbers.push(Number(currentNum));
   operate(numbers, operators);
   console.log(equals);
