@@ -2,7 +2,6 @@
 // I will use this as an opportunity to help learn refactoring
 // to maintain and improve this code
 // TODO: allow users to perform operations based on previous answer
-// TODO: only allow proper syntax like not allowing multiple operators and del btn rework
 // TODO: history section
 // ! users should not be able to return an incorrect result
 //  alt buttons
@@ -87,9 +86,11 @@ let operators = []; // string
 // a specific button on the calculator to ensure proper
 // syntax is being used.
 let numType = false;
+let opType = false;
 let delType = false;
 let decType = false;
 let eqlType = false;
+
 // reset boolean values
 function resetBV() {
   numType = false;
@@ -120,6 +121,7 @@ deleteBtn.addEventListener('click', function () {
   if (eqlType) {
     clearScreen();
     eqlType = false;
+    return;
   } else if (numType) {
     currentNum = currentNum.slice(0, -1);
     screenOutput.textContent = `${textOnType}${currentNum}`;
@@ -132,6 +134,7 @@ deleteBtn.addEventListener('click', function () {
       screenOutput.textContent = `${textOnType} `;
       currentOp = '';
       delType = true;
+      opType = false;
     }
   }
 });
@@ -176,6 +179,7 @@ numberButtons.forEach((button) => {
   button.addEventListener('click', function () {
     currentNum += button.value;
     numType = true;
+    opType = false;
     showMaths();
   });
 });
@@ -191,16 +195,21 @@ const operatorButtons = [addBtn, subtractBtn, multiplyBtn, divideBtn];
 // op btn event listeners
 operatorButtons.forEach((button) => {
   button.addEventListener('click', function () {
-    if (!delType) {
-      //  convert string numbers to integers
-      numbers.push(Number(currentNum));
+    // only allow one operator to be clicked at a time
+    if (!opType) {
+      // only push string of current number if the delete btn hasn't been used
+      if (!delType) {
+        // convert string numbers to integers
+        numbers.push(Number(currentNum));
+      }
+      currentOp = button.value;
+      operators.push(currentOp);
+      opType = true;
+      resetBV();
+      showMaths();
+      currentOp = '';
+      currentNum = '';
     }
-    currentOp = button.value;
-    operators.push(currentOp);
-    resetBV();
-    showMaths();
-    currentOp = '';
-    currentNum = '';
   });
 });
 
@@ -226,6 +235,7 @@ equalsBtn.addEventListener('click', function () {
   let truncatedString = truncateText(originalString, 36);
   previewLast.textContent = truncatedString;
   eqlType = true;
+  opType = false;
   resetEC();
   resetBV();
 });
@@ -240,7 +250,7 @@ function truncateText(text, maxLength) {
 
 // DISPLAY CURRENT INPUT //
 function showMaths() {
-  // display this if user is input is a number
+  // display this if user input is a number
   if (numType) {
     screenOutput.textContent = `${textOnType}${currentNum}`;
   }
@@ -255,11 +265,16 @@ function showMaths() {
 //  HELPER FUNCTIONS //
 // reset on equals or clear
 function resetEC() {
-  equals = '';
-  currentNum = '';
-  currentOp = '';
+  equals = ``;
+  currentNum = ``;
+  currentOp = ``;
   currentMaths = ``;
   textOnType = ``;
   numbers = [];
   operators = [];
+  numType = false;
+  opType = false;
+  delType = false;
+  decType = false;
+  eqlType = false;
 }
